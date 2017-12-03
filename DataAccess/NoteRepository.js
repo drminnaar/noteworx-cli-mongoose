@@ -183,6 +183,33 @@ class NoteRepository {
         });
     }
 
+
+    removeNote(id) {
+        assert(id, 'Id is required');
+        
+        return new Promise((resolve, reject) => {
+            
+            const onError = error => {
+                mongoose.disconnect();
+                reject(error);
+            };
+            
+            const onConnected = () => {                
+                Note.remove(filters.id(id))
+                    .then(() => {
+                        mongoose.disconnect();
+                        resolve();
+                    })
+                    .catch(onError);
+            };
+            
+            mongoose.connect(connectionUrl, connectionOptions)
+                .then(onConnected)
+                .catch(onError);                
+        });
+    }
+
+    
     tagNote(id, tags) {
         
         return new Promise((resolve, reject) => {
