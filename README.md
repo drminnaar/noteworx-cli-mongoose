@@ -1,4 +1,4 @@
-# JS Note README
+# NoteWorx README
 
 A basic note application that uses a CLI (Command Line Interface) frontend to capture and manage notes, and [Mongoose](http://mongoosejs.com/) to assist with storing/retrieving notes to/from a [MongoDB](https://www.mongodb.com/) database.
 
